@@ -1,0 +1,41 @@
+.myCard-list{
+    display: grid;
+    margin: 10px 30px 10px 30px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-controls{
+    border: 1px solid #b8b8b8;
+    border-radius: 15px;
+    height: 315px;
+    width: calc(100% - 25px);
+    min-width: 250px;
+    /*padding: 10px;*/
+}
+.list-controls:hover{
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.list-controls button{
+    border-radius: 15px;
+    border: none;
+    height: 100%;
+    width: 100%;
+    font-size: large;
+}
+
+@media (max-width: 865px) and (min-width: 581px) {
+    .myCard-list{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 580px) {
+    .myCard-list{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

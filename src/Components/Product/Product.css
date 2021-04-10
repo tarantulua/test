@@ -1,0 +1,52 @@
+.product{
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    /*background: #DB3022;*/
+}
+
+.product-content{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /*background: #61dafb;*/
+    align-items: center;
+    text-wrap: avoid;
+}
+
+.product-title{
+    align-self: center;
+    font-size: 58px;
+}
+
+.myExpand-button{
+    width: 100%;
+    background: white;
+    border: 1px gray solid;
+    border-radius: 5px;
+}
+
+.product-specs{
+    text-wrap: avoid;
+    font-size: 45px;
+}
+
+.product-img{
+    align-self: center;
+    max-height: min-content;
+    max-width: max-content;
+
+}
+
+.product-img img{
+    height: auto;
+    width: auto;
+    max-width: 350px;
+    max-height: 350px;
+}
+
+.product-specs{
+    margin: 10px;
+    background: #61dafb;
+}

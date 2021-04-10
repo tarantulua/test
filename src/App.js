@@ -1,24 +1,40 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import {useDispatch} from "react-redux"
+import {useRoutes} from "./routes";
+import {setCardList} from "./redux/actions";
+import NavMenu from "./Components/NavMenu/NavMenu";
+import React, {useEffect} from "react";
 
 function App() {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // let cardList = ;
+        // console. log(data);
+        dispatch(setCardList(require("./Products.json")));
+    })
+
+    // function loadList(){
+    //     let cardLsit = require("./Products.json");
+    //     // console. log(data);
+    //     dispatch(setCardList(cardLsit));
+    // }
+    //
+    // loadList();
+
+    const routes = useRoutes(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+          <header id="site-header" className="site-header">
+              <NavMenu/>
+          </header>
+          <div className="main">
+              {routes}
+          </div>
+      </>
   );
 }
 

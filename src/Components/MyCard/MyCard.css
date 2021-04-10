@@ -1,0 +1,148 @@
+
+.myCard{
+    border: 1px solid #b8b8b8;
+    border-radius: 15px;
+    height: 315px;
+    width: calc(100% - 25px);
+    min-width: 250px;
+    padding: 10px;
+    display: grid;
+    grid-template-rows: repeat(3, max-content);
+    grid-row-gap: 5px;
+    transition: 0.3s;
+}
+
+.myCard:hover{
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.myCard:hover .myCard-img{
+    transition: 0.3s;
+    transform: scale(1.05);
+}
+
+.myCard-title{
+    font-size: 26px;
+    grid-row: 2;
+}
+
+.myCard-img{
+    display: flow;
+    align-items: center;
+    justify-content: center;
+    /*overflow: hidden;*/
+    height: 250px;
+    /*grid-row: 1;*/
+    transition: 0.3s;
+}
+
+.myCard-blackBox{
+    display: flex;
+    bottom: 300px;
+    border-radius: 15px;
+    background: black;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.4s;
+}
+
+.myCard-specs{
+    padding: 20px;
+    height: 100%;
+    width: calc(100% - 50px) ;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    top: -100%;
+    position: relative;
+    text-align: -webkit-center;
+    text-wrap: avoid;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0;
+    -webkit-user-select: none;
+    transition: 0.4s;
+}
+
+.myCard-specs label{
+    max-height: 190px;
+    overflow: hidden;
+    height: auto;
+}
+
+.myCard-img:hover .myCard-specs{
+    opacity: 100%;
+}
+
+.myCard-img:hover .myCard-blackBox{
+    opacity: 60%;
+}
+
+.myCard-buttonContainer{
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.myCard-button{
+    border: none;
+    border-radius: 40px;
+    color: white;
+    height: 38px;
+    width: calc(100% - 20px);
+    background: #DB3022;
+}
+
+.likeButton{
+    /*display: inline-flex;*/
+    position: relative;
+    left: calc(100% - 45px);
+    bottom: 115px;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    font-size: 25px;
+    transition: 0.3s;
+    border: 1px solid #b8b8b8;
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+
+.likeButton label{
+    display: flex;
+    position: relative;
+    place-content: center;
+
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    /*top: 0;*/
+}
+
+.likeButton:hover label{
+    animation-name: likeJump;
+    animation-timing-function: ease;
+}
+
+@keyframes likeJump {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
+}
+
+.liked{
+    transition: 0.3s;
+    color: #DB3022;
+}
+
+button:active, button:focus {
+    outline: none;
+}
+
+@media (max-width: 300px) {
+    .myCard{
+        width: 200px;
+    }
+}
