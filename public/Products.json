@@ -3,7 +3,8 @@
     "id": 0,
     "Name": "Iphone 6",
     "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inchHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch",
-    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/IPhone6_silver_frontface.png/800px-IPhone6_silver_frontface.png"
+    "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/IPhone6_silver_frontface.png/800px-IPhone6_silver_frontface.png",
+    "Type": "sale"
   },
   {
     "id": 2,
@@ -15,22 +16,26 @@
     "id": 3,
     "Name": "Iphone 7",
     "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces",
-    "img": "https://sintetiki.net/images/product/19439/565/Apple-iphone-7-black.png"
+    "img": "https://sintetiki.net/images/product/19439/565/Apple-iphone-7-black.png",
+    "Type": "new"
   },
   {
     "id": 4,
     "Name": "Iphone 7 Plus",
-    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces"
+    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces",
+    "Type": "new"
   },
   {
     "id": 5,
     "Name": "Iphone 8 Plus",
-    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ouncesHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ouncesHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces"
+    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ouncesHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ouncesHeight: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces",
+    "Type": "new"
   },
   {
     "id": 6,
     "Name": "Iphone 8 Plus",
-    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces"
+    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces",
+    "Type": "new"
   },
   {
     "id": 7,
@@ -56,37 +61,44 @@
   {
     "id": 13,
     "Name": "Iphone X",
-    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces"
+    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces",
+    "Type": "new"
   },
   {
     "id": 14,
     "Name": "Iphone X",
-    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces"
+    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces",
+    "Type": "new"
   },
   {
     "id": 15,
     "Name": "Iphone X",
-    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces"
+    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces",
+    "Type": "new"
   },
   {
     "id": 16,
     "Name": "Iphone X",
-    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces"
+    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces",
+    "Type": "new"
   },
   {
     "id": 17,
     "Name": "Iphone X",
-    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces"
+    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces",
+    "Type": "sale"
   },
   {
     "id": 18,
     "Name": "Iphone X",
-    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces"
+    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces",
+    "Type": "sale"
   },
   {
     "id": 19,
     "Name": "Iphone X",
-    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces"
+    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces",
+    "Type": "sale"
   },
   {
     "id": 20,
@@ -101,6 +113,7 @@
   {
     "id": 22,
     "Name": "Iphone X",
-    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces"
+    "specs": "Height: 5.44 inches\nWidth: 2.64 inches\nDepth:0.27 inch\nWeight: 4.55 ounces",
+    "Type": "sale"
   }
 ]

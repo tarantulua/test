@@ -1,7 +1,8 @@
 import React from "react";
-import MyCardList from "../MyCardLsit/MyCardLsit";
+// import MyCardList from "../MyCardLsit/MyCardLsit";
 import "./Home.css"
 import ControlledCarousel from "../ControlledCarousel/ControlledCarousel";
+import ProuctsBlock from "./ProductsBlock/ProductsBlock"
 import testImg from "./girl_hair_flower_148949_3840x2160.jpg";
 
 function Home(){
@@ -17,15 +18,16 @@ function Home(){
         {
             img: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg",
             title: "Image3"
-        }
-    ]
+        }]
     return(
         <div className="Home">
             {/*<div className="img-container">*/}
             {/*    <img src={testImg} alt="test"/>*/}
             {/*</div>*/}
             <ControlledCarousel imgList={imgList}/>
-            <MyCardList/>
+            <ProuctsBlock type = "sale"/>
+            <ProuctsBlock type = "new"/>
+            {/*<MyCardList/>*/}
         </div>
     );
 }

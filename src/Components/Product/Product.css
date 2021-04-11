@@ -1,7 +1,7 @@
 .product{
     height: 100%;
     width: 100%;
-    padding: 10px;
+    padding: 10px 10px 58px 10px;
     /*background: #DB3022;*/
 }
 
@@ -9,15 +9,33 @@
     height: 100%;
     width: 100%;
     display: flex;
+    margin-bottom: 58px;
     flex-direction: column;
-    /*background: #61dafb;*/
-    align-items: center;
-    text-wrap: avoid;
+    /*align-items: center;*/
+    /*text-wrap: avoid;*/
+}
+
+.product-img{
+    align-self: center;
+    max-height: min-content;
+    max-width: max-content;
+}
+
+.product-img img{
+    height: auto;
+    width: auto;
+    max-width: 350px;
+    max-height: 350px;
+}
+
+.product-top{
+    display: flex;
 }
 
 .product-title{
-    align-self: center;
-    font-size: 58px;
+
+    justify-self: left;
+    font-size: 24px;
 }
 
 .myExpand-button{
@@ -32,21 +50,33 @@
     font-size: 45px;
 }
 
-.product-img{
+
+
+#product-specs.show{
+    margin-bottom: 60px;
+}
+
+
+.product-toCart{
+    display: flex;
     align-self: center;
-    max-height: min-content;
-    max-width: max-content;
-
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: fixed;
+    bottom: 10px;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+    background: #DB3022;
+    height: 48px;
+    width: 343px;
+    font: 16px "Segoe UI";
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
-.product-img img{
-    height: auto;
-    width: auto;
-    max-width: 350px;
-    max-height: 350px;
-}
-
-.product-specs{
-    margin: 10px;
-    background: #61dafb;
+@media (max-width: 353px) {
+    .product-toCart{
+        width: calc(100% - 20px);
+    }
 }

@@ -4,14 +4,14 @@ import MyCard from "../MyCard/MyCard";
 import {setCardList} from "../../redux/actions";
 import "./MyCardList.css"
 
-function MyCardList({myCardList, setCardList}){
+function MyCardList({myCardList}){
     const [scrollPos,setScrollPos] = useState(0);
     const [listElements, setListElements] = useState(0);
     const countOElements = 5;
 
     useEffect(() => {
         window.scrollTo(0,scrollPos);
-    });
+    },[scrollPos]);
 
     function showMore(){
         setScrollPos(window.pageYOffset);

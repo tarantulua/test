@@ -3,7 +3,7 @@
     margin: 10px 30px 10px 30px;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 15px;
-    justify-content: center;
+    justify-items: center;
     align-items: center;
 }
 

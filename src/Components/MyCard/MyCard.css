@@ -28,12 +28,9 @@
 }
 
 .myCard-img{
-    display: flow;
     align-items: center;
-    justify-content: center;
-    /*overflow: hidden;*/
     height: 250px;
-    /*grid-row: 1;*/
+    text-align: -webkit-center;
     transition: 0.3s;
 }
 
@@ -51,19 +48,18 @@
 .myCard-specs{
     padding: 20px;
     height: 100%;
-    width: calc(100% - 50px) ;
+    width: calc(100% - 55px);
     display: flex;
     margin: auto;
     align-items: center;
     top: -100%;
     position: relative;
     text-align: -webkit-center;
-    text-wrap: avoid;
+    justify-content: center;
     color: white;
     overflow: hidden;
     text-overflow: ellipsis;
     opacity: 0;
-    -webkit-user-select: none;
     transition: 0.4s;
 }
 
