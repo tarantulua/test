@@ -1,32 +1,21 @@
 import React, {useEffect} from "react";
 import './App.css';
-import {useDispatch} from "react-redux"
+import {connect} from "react-redux"
 import {useRoutes} from "./routes";
 import {setCardList} from "./redux/actions";
 import NavMenu from "./Components/NavMenu/NavMenu";
 
 
-function App() {
-
-    const dispatch = useDispatch()
-    // useEffect(() => {
-    //     // let cardList = ;
-    //     // console. log(data);
-    //     // dispatch(setCardList(require("../public/Products.json")));
-    //     fetchh
-    // })
-
-    // LoadList();
-
+function App({setCardList}) {
 
     useEffect( ()=>{
         const LoadList =  async () => {
             const response = await fetch(`${process.env.PUBLIC_URL}/Products.json`);
             const json = await response.json();
-            dispatch(setCardList(json));
+            setCardList(json);
         }
         LoadList();
-    },[dispatch])
+    },[setCardList])
 
     const routes = useRoutes(true);
     return (
@@ -41,5 +30,8 @@ function App() {
     );
 }
 
+const mapDispatchToProps  ={
+    setCardList
+}
 
-export default App;
+export default connect(null,mapDispatchToProps) (App);
