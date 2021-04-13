@@ -43,7 +43,7 @@ if (productsList.length !== 0)
                     <>Super sale</>
                 ) }
             </div>
-            <BlockList blockProducts={productsList}/>
+            <BlockList blockProducts={productsList} type={type}/>
         </div>
     );
 

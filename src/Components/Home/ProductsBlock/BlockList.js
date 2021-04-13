@@ -20,14 +20,14 @@ export function useHorizontalScroll () {
     return elRef;
 }
 
-function BlockList({blockProducts}){
+function BlockList({blockProducts,type}){
 
     const scrollRef = useHorizontalScroll();
     return(
         <div id="block-list" className="block-list" ref={scrollRef}>
             {blockProducts.map((product) => {
                 return (
-                    <MyCard key = {product.id} myCard={product} />
+                    <MyCard key = {product.id} myCard={product} type={type} />
                 )})}
         </div>
     );

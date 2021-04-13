@@ -143,15 +143,15 @@ function Product({myCardList}) {
                             {chooseType === "color" &&
                             (
                                 <>
-                                    <button className={selColor === "red" ? "picker-active" : null} onClick={() => {
-                                        setSelColor("red")
+                                    <button className={selColor === "Red" ? "picker-active" : null} onClick={() => {
+                                        setSelColor("Red")
                                     }}>
-                                        red
+                                        Red
                                     </button>
-                                    <button className={selColor === "white" ? "picker-active" : null} onClick={() => {
-                                        setSelColor("white")
+                                    <button className={selColor === "White" ? "picker-active" : null} onClick={() => {
+                                        setSelColor("White")
                                     }}>
-                                        white
+                                        White
                                     </button>
                                 </>
                             )
