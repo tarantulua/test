@@ -58,6 +58,12 @@
     background: #ffffff;
 }
 
+
+
+.product-content.overflow-hide{
+    overflow: hidden;
+}
+
 .product-color{
     margin-left: 5px;
 }
@@ -94,6 +100,33 @@
 
 .product-specs{
     font-size: 45px;
+}
+
+.picker-title{
+    font-size: 22px;
+    font-weight: 500;
+    text-align: -webkit-center;
+}
+
+.picker-buttons{
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    gap: 15px;
+}
+
+.picker-buttons button{
+    width: 100px;
+    height: 40px;
+    border: 1px gray solid;
+    border-radius: 5px;
+}
+
+.picker-active{
+    transition: 0.2s;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.5);
 }
 
 /*#product-specs.show{*/

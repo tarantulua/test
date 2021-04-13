@@ -16,7 +16,7 @@ function SlideModal(props){
     }
     let className = props.isActive ? "slideModal" : "slideModal op-0";
 
-    console.log(props.isActive);
+    // console.log(props.isActive);
 
     return(
         <React.Fragment>
@@ -27,9 +27,9 @@ function SlideModal(props){
                 { props.isActive && (<div className="slideModal-body"
                      onMouseDown={event => event.stopPropagation()}>
                         <div className="slideModal-line"/>
-                    <>
+                    <div className="slideModal-content">
                         {props.children}
-                    </>
+                    </div>
                 </div>)}
             </div>
         </React.Fragment>

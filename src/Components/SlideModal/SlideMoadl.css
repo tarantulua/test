@@ -24,10 +24,6 @@
     opacity: 0;
 }
 
-.slideModal.modalClose{
-    pointer-events: none;
-}
-
 .slideModal-body {
     animation: 0.3s ease bottomToTop;
     position: absolute;
@@ -44,7 +40,7 @@
 }
 
 .slideModal-line{
-    height: 10px;
+    height: 7px;
     width: 125px;
     border-radius: 15px;
     background: gray;
@@ -56,6 +52,10 @@
     position: relative;
 }
 
+.slideModal-content{
+    top: -7px;
+    position: relative;
+}
 
 @keyframes bottomToTop {
     0%{

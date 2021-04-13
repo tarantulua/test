@@ -18,6 +18,7 @@ function MyCardList({myCardList}){
         setListElements(listElements + countOElements);
     }
 
+
     return(
             <div className="myCard-list">
                 {myCardList.slice(0,listElements+countOElements).map((myCard, index) => {

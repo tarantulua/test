@@ -11,7 +11,26 @@ function Product({myCardList}) {
 
     const [isSlideModalShow, setIsSlideModalShow] = useState(false);
 
+    const [chooseType, setChooseType] = useState("");
+
+    const [selSize, setSelSize] = useState("");
+
+    const [selColor, setSelColor] = useState("");
+
+    // console.log(test);
+
     const params = useParams().id;
+
+    function showSlideModal(type) {
+        setChooseType(type);
+        (document.getElementById("product-content").classList.add("overflow-hide"));
+        // console.log("click");
+        setIsSlideModalShow(true);
+    }
+
+    useEffect(() => {
+        if (isSlideModalShow === false) (document.getElementById("product-content")?.classList.remove("overflow-hide"));
+    }, [isSlideModalShow])
 
     useEffect(() => {
         if (!product) {
@@ -19,7 +38,7 @@ function Product({myCardList}) {
             // myCardList.find(product => product.id === parseInt(params))
             // console.log("set");
         }
-        console.log("open");
+        // console.log("open");
         (document.getElementById("site-header")).className = "site-header hide0";
     }, [myCardList, params, product])
 
@@ -40,20 +59,24 @@ function Product({myCardList}) {
             {product ? (
                 <div className="product">
                     {/*<button>dsadsdas</button>*/}
-                    <div className="product-content">
+                    <div id="product-content" className="product-content">
                         <span className='product-img'>
                             <img src={product.img} alt="product-img"/>
                         </span>
                         <div className="product-top">
                             <div className="product-selectors">
                                 <span className="product-size">
-                                   Size <button onClick={()=>{ console.log("click"); setIsSlideModalShow(true)}}>
-                                     Choose
+                                   Size <button onClick={() => {
+                                    showSlideModal("size")
+                                }}>
+                                    {selSize ? selSize : "Choose"}
                                     </button>
                                 </span>
                                 <span className="product-color">
-                                    Color <button>
-                                        Choose
+                                    Color  <button onClick={() => {
+                                    showSlideModal("color")
+                                }}>
+                                        {selColor ? selColor : "Choose"}
                                         </button>
                                 </span>
                             </div>
@@ -81,11 +104,59 @@ function Product({myCardList}) {
                             </div>
                         </Collapse>
                         <div className="prouct-margin"/>
-                        <button className="product-toCart">ADD TO CART</button>
+                        <button className="product-toCart" onClick={() => {
+                        }}>ADD TO CART
+                        </button>
                     </div>
                     <SlideModal isActive={isSlideModalShow}
                                 setActive={setIsSlideModalShow}>
-                        <div>dsada</div>
+                        <div className="picker-title">
+                            Select size
+                        </div>
+                        <div className="picker-buttons">
+                            {chooseType === "size" &&
+                            (
+                                <>
+                                    <button className={selSize === "XS" ? "picker-active" : null} onClick={() => {
+                                        setSelSize("XS")
+                                    }}>XS
+                                    </button>
+                                    <button className={selSize === "S" ? "picker-active" : null} onClick={() => {
+                                        setSelSize("S")
+                                    }}>S
+                                    </button>
+                                    <button className={selSize === "M" ? "picker-active" : null} onClick={() => {
+                                        setSelSize("M")
+                                    }}>M
+                                    </button>
+                                    <button className={selSize === "L" ? "picker-active" : null} onClick={() => {
+                                        setSelSize("L")
+                                    }}>L
+                                    </button>
+                                    <button className={selSize === "XL" ? "picker-active" : null} onClick={() => {
+                                        setSelSize("XL")
+                                    }}>XL
+                                    </button>
+                                </>
+                            )
+                            }
+                            {chooseType === "color" &&
+                            (
+                                <>
+                                    <button className={selColor === "red" ? "picker-active" : null} onClick={() => {
+                                        setSelColor("red")
+                                    }}>
+                                        red
+                                    </button>
+                                    <button className={selColor === "white" ? "picker-active" : null} onClick={() => {
+                                        setSelColor("white")
+                                    }}>
+                                        white
+                                    </button>
+                                </>
+                            )
+                            }
+                        </div>
                     </SlideModal>
                 </div>
             ) : (<div className="product-loading"><Spinner animation="border" style={{width: "6rem", height: "6rem"}}/>
