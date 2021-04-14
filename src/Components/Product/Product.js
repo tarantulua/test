@@ -91,7 +91,7 @@ function Product({myCardList}) {
                                 Categories
                             </div>
                             <div className="product-rating">
-                                <RatingBar/>
+                                <RatingBar isSelectable={true}/>
                             </div>
                         </div>
                         <button className={`myExpand-button ${open ? "" : "m-bot60px"}`} onClick={() => setOpen(!open)}

@@ -1,46 +1,57 @@
 import React from "react";
 import "./RatingBar.css";
 
-const useStarClick = (initialValue, isSelectable) => {
+// const useStarClick = (initialValue, isSelectable) => {
+//
+//     const [value, setValue] = React.useState(initialValue);
+//
+//     let onClick = React.useCallback((event) => {
+//         setValue(event.target.id[4])
+//     }, []);
+//
+//     if (!isSelectable) onClick = () => {
+//     }
+//
+//     return {
+//         bind: {
+//             onClick
+//         },
+//         set: (line) => setValue(line),
+//         get: () => value
+//     };
+// };
 
-    const [value, setValue] = React.useState(initialValue);
+function RatingBar({rating, isSelectable}) {
 
-    let onClick = React.useCallback((event) => {setValue(event.target.id[4])},[]);
+    // const star = useStarClick(rating || 0, isSelectable || false);
 
-    if (!isSelectable) onClick = ()=>{}
+    const [myRating, setMyRating] = React.useState(rating);
 
-    return{
-        bind: {
-            onClick
-        },
-        set: (line) => setValue(line),
-        get: () => value
-    };
-};
+    const starClick = (event) =>{
+        // console.log(event.target.id[4]);
+        if (myRating !== event.target.id[4])  return setMyRating(event.target.id[4]);
+        return setMyRating(0)
+    }
 
-function RatingBar({rating,isSelectable}){
+    console.log(myRating);
 
-    const star = useStarClick(rating || 0,isSelectable);
-
-    console.log(star.get());
-
-    return(
+    return (
         <div className="myRating-Bar">
-            <span id = {`${isSelectable? "star5":""}`}
-                  className={`star${isSelectable ? "star-hover star5" : ""}${rating >= 5 ? "star-active" : ""}`}
-                  {...star.bind}>&#9733;</span>
-            <span id = {`${isSelectable? "star4":""}`}
-                  className={`star ${isSelectable ? "star-hover star4" : ""}${rating >= 4 ? "star-active" : ""}`}
-                  {...star.bind}>&#9733;</span>
-            <span id = {`${isSelectable? "star3":""}`}
-                  className={`star ${isSelectable ? "star-hover star3" : ""}${rating >= 3 ? "star-active" : ""}`}
-                  {...star.bind}>&#9733;</span>
-            <span id = {`${isSelectable? "star2":""}`}
-                  className={`star ${isSelectable ? "star-hover star2" : ""}${rating >= 2 ? "star-active" : ""}`}
-                  {...star.bind}>&#9733;</span>
-            <span id = {`${isSelectable? "star1":""}`}
-                  className={`star ${isSelectable ? "star-hover star1" : ""}${rating >= 1 ? "star-active" : ""}`}
-                  {...star.bind}>&#9733;</span>
+            <span id={`${isSelectable ? "star5" : ""}`}
+                  className={`star ${isSelectable ? "star-hover star5" : ""}${myRating >= 5 ? " star-active" : ""}`}
+                  onClick={event => starClick(event)}>&#9733;</span>
+            <span id={`${isSelectable ? "star4" : ""}`}
+                  className={`star ${isSelectable ? "star-hover star4" : ""}${myRating >= 4 ? " star-active" : ""}`}
+                  onClick={event => starClick(event)}>&#9733;</span>
+            <span id={`${isSelectable ? "star3" : ""}`}
+                  className={`star ${isSelectable ? "star-hover star3" : ""}${myRating >= 3 ? " star-active" : ""}`}
+                  onClick={event => starClick(event)}>&#9733;</span>
+            <span id={`${isSelectable ? "star2" : ""}`}
+                  className={`star ${isSelectable ? "star-hover star2" : ""}${myRating >= 2 ? " star-active" : ""}`}
+                  onClick={event => starClick(event)}>&#9733;</span>
+            <span id={`${isSelectable ? "star1" : ""}`}
+                  className={`star ${isSelectable ? "star-hover star1" : ""}${myRating >= 1 ? " star-active" : ""}`}
+                  onClick={event => starClick(event)}>&#9733;</span>
         </div>
     );
 }
