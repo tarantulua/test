@@ -1,0 +1,49 @@
+.myRating-Bar{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    width: max-content;
+    height: max-content;
+    -webkit-align-items: center;
+    -webkit-align-content: center;
+    -webkit-justify-content: center;
+    -webkit-user-select: none;
+}
+
+.star{
+    color: gray;
+    height: max-content;
+    width: max-content;
+    font-size: 29px;
+    transition: 0.25s;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.star-hover:hover{
+    cursor: pointer;
+    color: orange;
+}
+
+#star2:hover ~ #star1{
+    color: orange;
+}
+
+#star3:hover ~ #star2, #star3:hover ~ #star1 {
+    color: orange;
+}
+
+#star4:hover ~ #star3, #star4:hover ~ #star2, #star4:hover ~ #star1 {
+    color: orange;
+}
+
+#star5:hover ~ #star4, #star5:hover ~ #star3, #star5:hover ~ #star2, #star5:hover ~ #star1 {
+    color: orange;
+}
+
+.star-active{
+    color: orange;
+}

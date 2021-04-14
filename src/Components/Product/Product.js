@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import {Collapse, Spinner} from "react-bootstrap";
 import SlideModal from "../SlideModal/SlideModal";
+import RatingBar from "../RatingBar/RatingBar";
 
 function Product({myCardList}) {
 
@@ -90,7 +91,7 @@ function Product({myCardList}) {
                                 Categories
                             </div>
                             <div className="product-rating">
-                                Rating star must be here!
+                                <RatingBar/>
                             </div>
                         </div>
                         <button className={`myExpand-button ${open ? "" : "m-bot60px"}`} onClick={() => setOpen(!open)}
