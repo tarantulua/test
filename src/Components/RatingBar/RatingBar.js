@@ -1,7 +1,6 @@
 import React from "react";
 import "./RatingBar.css";
 
-
 const useStarClick = (initialValue, isSelectable) => {
 
     const [value, setValue] = React.useState(initialValue);
@@ -19,10 +18,9 @@ const useStarClick = (initialValue, isSelectable) => {
     };
 };
 
+function RatingBar({rating,isSelectable}){
 
-function RatingBar({rating = 4,isSelectable = false}){
-
-    const star = useStarClick(rating,isSelectable);
+    const star = useStarClick(rating || 0,isSelectable);
 
     console.log(star.get());
 
