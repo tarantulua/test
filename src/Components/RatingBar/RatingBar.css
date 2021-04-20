@@ -15,12 +15,16 @@
 
 .star{
     color: gray;
+    text-wrap: avoid;
+    text-overflow: ellipsis;
     height: max-content;
     width: max-content;
     font-size: 29px;
     transition: 0.25s;
     vertical-align: middle;
     text-align: center;
+    margin: 0;
+    line-height: 1;
 }
 
 .star-hover:hover{

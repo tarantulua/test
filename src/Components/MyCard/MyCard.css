@@ -9,6 +9,8 @@
     grid-template-rows: repeat(3, max-content);
     grid-row-gap: 5px;
     transition: 0.3s;
+    margin: auto;
+    overflow: hidden;
 }
 
 .myCard:hover{
@@ -44,7 +46,7 @@
     border-radius: 15px;
     background: black;
     opacity: 0;
-    width: 100%;
+    width: 96%;
     height: 100%;
     transition: 0.4s;
 }
@@ -52,7 +54,7 @@
 .myCard-specs{
     padding: 20px;
     height: 100%;
-    width: calc(100% - 55px);
+    width: calc(100% - 65px);
     display: flex;
     margin: auto;
     align-items: center;

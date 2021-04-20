@@ -2,6 +2,7 @@ import React from "react";
 import {Switch, Route, Redirect} from "react-router-dom";
 import Home from "./Components/Home/Home";
 import Product from "./Components/Product/Product";
+import MyCart from "./Components/MyCart/MyCart";
 
 
 export const useRoutes = isAuthenticated =>{
@@ -14,6 +15,9 @@ export const useRoutes = isAuthenticated =>{
                     </Route>
                     <Route path="/item/:id">
                         <Product/>
+                    </Route>
+                    <Route path="/cart">
+                        <MyCart />
                     </Route>
                     {/*<Route path="/product/:type">*/}
                     {/*    /!*<Product/>*!/*/}

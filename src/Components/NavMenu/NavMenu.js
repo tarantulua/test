@@ -48,10 +48,9 @@ function NavMenu() {
     }
 
     return (
-        <Navbar className="navbar">
-            <NavbarBrand className="left">
-                <NavLink to = "/" className="nav-link">Navbar</NavLink>
-            </NavbarBrand>
+        <Navbar>
+            <NavLink to="/" className="nav-link nav-left">Home</NavLink>
+            <NavLink to="/cart" className="nav-link nav-right">Cart</NavLink>
         </Navbar>
     );
 }

@@ -5,8 +5,9 @@ import {connect} from "react-redux";
 import {Collapse, Spinner} from "react-bootstrap";
 import SlideModal from "../SlideModal/SlideModal";
 import RatingBar from "../RatingBar/RatingBar";
+import {addItemToCart} from "../../redux/actions";
 
-function Product({myCardList}) {
+function Product({myCardList,addItemToCart}) {
 
     const [product, setProduct] = useState();
 
@@ -54,18 +55,25 @@ function Product({myCardList}) {
 
     const [open, setOpen] = useState(false);
 
+    function addToCart() {
+        if (selSize !== "" && selColor !== ""){
+            addItemToCart(product);
+        }
+        else console.log("No");
+    }
+
     // console.log(product);
     return (
         <>
             {product ? (
-                <div className="product">
-                    {/*<button>dsadsdas</button>*/}
-                    <div id="product-content" className="product-content">
+                    <div className="product">
+                        {/*<button>dsadsdas</button>*/}
+                        <div id="product-content" className="product-content">
                         <span className='product-img'>
                             <img src={product.img} alt="product-img"/>
                         </span>
-                        <div className="product-top">
-                            <div className="product-selectors">
+                            <div className="product-top">
+                                <div className="product-selectors">
                                 <span className="product-size">
                                    Size <button onClick={() => {
                                     showSlideModal("size")
@@ -73,95 +81,98 @@ function Product({myCardList}) {
                                     {selSize ? selSize : "Choose"}
                                     </button>
                                 </span>
-                                <span className="product-color">
+                                    <span className="product-color">
                                     Color  <button onClick={() => {
-                                    showSlideModal("color")
-                                }}>
+                                        showSlideModal("color")
+                                    }}>
                                         {selColor ? selColor : "Choose"}
                                         </button>
                                 </span>
+                                </div>
+                                <div className="product-title">
+                                    {product.Name}
+                                </div>
+                                <div className="product-price">
+                                    19.99$
+                                </div>
+                                <div className="product-category">
+                                    Categories
+                                </div>
+                                <div className="product-rating">
+                                    <RatingBar isSelectable={true}/>
+                                </div>
                             </div>
-                            <div className="product-title">
-                                {product.Name}
-                            </div>
-                            <div className="product-price">
-                                19.99$
-                            </div>
-                            <div className="product-category">
-                                Categories
-                            </div>
-                            <div className="product-rating">
-                                <RatingBar isSelectable={true}/>
-                            </div>
+                            <button className={`myExpand-button ${open ? "" : "m-bot60px"}`} onClick={() => setOpen(!open)}
+                                    aria-controls="example-collapse-text"
+                                    aria-expanded={open}>
+                                See specs
+                            </button>
+                            <Collapse in={open}>
+                                <div id="product-specs">
+                                    {product.specs}
+                                </div>
+                            </Collapse>
+                            <div className="prouct-margin"/>
+                            <button className="product-toCart" onClick={addToCart}>ADD TO CART
+                            </button>
                         </div>
-                        <button className={`myExpand-button ${open ? "" : "m-bot60px"}`} onClick={() => setOpen(!open)}
-                                aria-controls="example-collapse-text"
-                                aria-expanded={open}>
-                            See specs
-                        </button>
-                        <Collapse in={open}>
-                            <div id="product-specs">
-                                {product.specs}
+                        <SlideModal isActive={isSlideModalShow}
+                                    setActive={setIsSlideModalShow}>
+                            <div className="picker-title">
+                                Select size
                             </div>
-                        </Collapse>
-                        <div className="prouct-margin"/>
-                        <button className="product-toCart" onClick={() => {
-                        }}>ADD TO CART
-                        </button>
+                            <div className="picker-buttons">
+                                {chooseType === "size" &&
+                                (
+                                    <>
+                                        <button className={selSize === "XS" ? "picker-active" : null} onClick={() => {
+                                            setSelSize("XS")
+                                        }}>XS
+                                        </button>
+                                        <button className={selSize === "S" ? "picker-active" : null} onClick={() => {
+                                            setSelSize("S")
+                                        }}>S
+                                        </button>
+                                        <button className={selSize === "M" ? "picker-active" : null} onClick={() => {
+                                            setSelSize("M")
+                                        }}>M
+                                        </button>
+                                        <button className={selSize === "L" ? "picker-active" : null} onClick={() => {
+                                            setSelSize("L")
+                                        }}>L
+                                        </button>
+                                        <button className={selSize === "XL" ? "picker-active" : null} onClick={() => {
+                                            setSelSize("XL")
+                                        }}>XL
+                                        </button>
+                                    </>
+                                )
+                                }
+                                {chooseType === "color" &&
+                                (
+                                    <>
+                                        <button className={selColor === "Red" ? "picker-active" : null} onClick={() => {
+                                            setSelColor("Red")
+                                        }}>
+                                            Red
+                                        </button>
+                                        <button className={selColor === "White" ? "picker-active" : null} onClick={() => {
+                                            setSelColor("White")
+                                        }}>
+                                            White
+                                        </button>
+                                    </>
+                                )
+                                }
+                            </div>
+                        </SlideModal>
                     </div>
-                    <SlideModal isActive={isSlideModalShow}
-                                setActive={setIsSlideModalShow}>
-                        <div className="picker-title">
-                            Select size
-                        </div>
-                        <div className="picker-buttons">
-                            {chooseType === "size" &&
-                            (
-                                <>
-                                    <button className={selSize === "XS" ? "picker-active" : null} onClick={() => {
-                                        setSelSize("XS")
-                                    }}>XS
-                                    </button>
-                                    <button className={selSize === "S" ? "picker-active" : null} onClick={() => {
-                                        setSelSize("S")
-                                    }}>S
-                                    </button>
-                                    <button className={selSize === "M" ? "picker-active" : null} onClick={() => {
-                                        setSelSize("M")
-                                    }}>M
-                                    </button>
-                                    <button className={selSize === "L" ? "picker-active" : null} onClick={() => {
-                                        setSelSize("L")
-                                    }}>L
-                                    </button>
-                                    <button className={selSize === "XL" ? "picker-active" : null} onClick={() => {
-                                        setSelSize("XL")
-                                    }}>XL
-                                    </button>
-                                </>
-                            )
-                            }
-                            {chooseType === "color" &&
-                            (
-                                <>
-                                    <button className={selColor === "Red" ? "picker-active" : null} onClick={() => {
-                                        setSelColor("Red")
-                                    }}>
-                                        Red
-                                    </button>
-                                    <button className={selColor === "White" ? "picker-active" : null} onClick={() => {
-                                        setSelColor("White")
-                                    }}>
-                                        White
-                                    </button>
-                                </>
-                            )
-                            }
-                        </div>
-                    </SlideModal>
-                </div>
-            ) : (<div className="product-loading"><Spinner animation="border" style={{width: "6rem", height: "6rem"}}/>
-            </div>)
+                )
+                : (
+                    <div className="product-loading">
+                        <Spinner animation="border" style={{width: "6rem", height: "6rem"}}/>
+                    </div>
+                )
             }
         </>
     );
@@ -173,4 +184,8 @@ const cardListStateToProps = state => {
     }
 }
 
-export default connect(cardListStateToProps)(Product);
+const mapDispatchToProps =  {
+    addItemToCart
+}
+
+export default connect(cardListStateToProps,mapDispatchToProps)(Product);
