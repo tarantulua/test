@@ -31,10 +31,8 @@ function RatingBar({rating, isSelectable}) {
         // console.log(event.target.id[4]);
         if (myRating !== event.target.id[4]) return setMyRating(event.target.id[4]);
         return setMyRating(0)
-    } : () => {
-    }
+    } : () => { }
 
-    console.log(myRating);
 
     return (
         <div className="myRating-Bar">

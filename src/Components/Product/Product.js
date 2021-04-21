@@ -7,7 +7,7 @@ import SlideModal from "../SlideModal/SlideModal";
 import RatingBar from "../RatingBar/RatingBar";
 import {addItemToCart} from "../../redux/actions";
 
-function Product({myCardList,addItemToCart}) {
+function Product({myCardList, addItemToCart}) {
 
     const [product, setProduct] = useState();
 
@@ -19,14 +19,36 @@ function Product({myCardList,addItemToCart}) {
 
     const [selColor, setSelColor] = useState("");
 
-    // console.log(test);
+    const [open, setOpen] = useState(false);
+
+    // const [checkBool,setCheckBool] = useState(false);
 
     const params = useParams().id;
 
+
+//<-- MUST BE CHANGE
+    let checkArray = [];
+
+    let forPrice;
+
+    if (selSize !== "" && selColor !== "") {
+        forPrice = product.variants.find(variant => variant[1] === selSize && variant[2] === selColor);
+    }
+
+    let max = 0, min = 9999999999999999999;
+
+    product?.variants.forEach((variant) => {
+        if (max < variant[3]) max = variant[3];
+        if (min > variant[3]) min = variant[3];
+    });
+//<-- END OF MUST BE CHANGE
+
+
+    // console.log(min, max)
+
     function showSlideModal(type) {
         setChooseType(type);
-        (document.getElementById("product-content").classList.add("overflow-hide"));
-        // console.log("click");
+        (document.getElementById("product-content")?.classList.add("overflow-hide"));
         setIsSlideModalShow(true);
     }
 
@@ -37,32 +59,26 @@ function Product({myCardList,addItemToCart}) {
     useEffect(() => {
         if (!product) {
             setProduct(myCardList.find(product => product.id === parseInt(params))); //undefined
-            // myCardList.find(product => product.id === parseInt(params))
-            // console.log("set");
         }
-        // console.log("open");
         (document.getElementById("site-header")).className = "site-header hide0";
     }, [myCardList, params, product])
 
     useEffect(() => {
         return () => {
-            console.log("closed");
             let header = document.getElementById("site-header");
-            header.classList.remove("hide0");
-            header.classList.remove("hide");
+            header?.classList.remove("hide0");
+            header?.classList.remove("hide");
         }
     }, [])
 
-    const [open, setOpen] = useState(false);
 
     function addToCart() {
-        if (selSize !== "" && selColor !== ""){
+        if (selSize !== "" && selColor !== "") {
             addItemToCart(product);
         }
-        else console.log("No");
     }
 
-    // console.log(product);
+
     return (
         <>
             {product ? (
@@ -93,7 +109,31 @@ function Product({myCardList,addItemToCart}) {
                                     {product.Name}
                                 </div>
                                 <div className="product-price">
-                                    19.99$
+                                    {selSize === "" || selColor === "" ? (
+                                            <>{min} - {max}</>
+                                        )
+                                        :
+                                        (
+                                            <>
+                                                {
+                                                    forPrice ?
+                                                    (
+                                                        <>
+                                                            {
+                                                                forPrice[3]
+                                                            }
+                                                        </>
+                                                    )
+                                                    : (
+                                                        <>
+                                                            Out of stock
+                                                        </>
+                                                    )
+                                                }
+                                            </>
+                                        )
+
+                                    }
                                 </div>
                                 <div className="product-category">
                                     Categories
@@ -125,42 +165,50 @@ function Product({myCardList,addItemToCart}) {
                                 {chooseType === "size" &&
                                 (
                                     <>
-                                        <button className={selSize === "XS" ? "picker-active" : null} onClick={() => {
-                                            setSelSize("XS")
-                                        }}>XS
-                                        </button>
-                                        <button className={selSize === "S" ? "picker-active" : null} onClick={() => {
-                                            setSelSize("S")
-                                        }}>S
-                                        </button>
-                                        <button className={selSize === "M" ? "picker-active" : null} onClick={() => {
-                                            setSelSize("M")
-                                        }}>M
-                                        </button>
-                                        <button className={selSize === "L" ? "picker-active" : null} onClick={() => {
-                                            setSelSize("L")
-                                        }}>L
-                                        </button>
-                                        <button className={selSize === "XL" ? "picker-active" : null} onClick={() => {
-                                            setSelSize("XL")
-                                        }}>XL
-                                        </button>
+                                        {product.variants.map((variant, index) => {
+                                            if (!checkArray.includes(variant[1])) {
+                                                checkArray.push(variant[1]);
+                                                // if (checkBool != true) setCheckBool(Boolean(selColor !== "" && variant[2] !== selColor));
+                                                return (
+                                                    // disabled={checkBool}
+                                                    <button key={index}
+                                                            className={selSize === variant[1] ? "picker-active" : null}
+                                                            onClick={
+                                                                () => {
+                                                                    if (selSize !== variant[1])
+                                                                        setSelSize(variant[1])
+                                                                    else setSelSize("");
+                                                                }
+                                                            }>{variant[1]}
+                                                    </button>
+                                                )
+                                            }
+                                        })}
                                     </>
                                 )
                                 }
                                 {chooseType === "color" &&
                                 (
                                     <>
-                                        <button className={selColor === "Red" ? "picker-active" : null} onClick={() => {
-                                            setSelColor("Red")
-                                        }}>
-                                            Red
-                                        </button>
-                                        <button className={selColor === "White" ? "picker-active" : null} onClick={() => {
-                                            setSelColor("White")
-                                        }}>
-                                            White
-                                        </button>
+                                        {product.variants.map((variant, index) => {
+                                            if (!checkArray.includes(variant[2])) {
+                                                checkArray.push(variant[2]);
+                                                console.log(variant[1], Boolean(selSize !== "" && variant[1] !== selSize));
+                                                return (
+                                                    //  disabled={selSize !== "" && variant[1] !== selSize ? true : false}
+                                                    <button key={index}
+                                                            className={selColor === variant[2] ? "picker-active" : null}
+                                                            onClick={
+                                                                () => {
+                                                                    if (selColor !== variant[2])
+                                                                        setSelColor(variant[2])
+                                                                    else setSelColor("")
+                                                                }
+                                                            }>{variant[2]}
+                                                    </button>
+                                                )
+                                            }
+                                        })}
                                     </>
                                 )
                                 }
@@ -184,8 +232,8 @@ const cardListStateToProps = state => {
     }
 }
 
-const mapDispatchToProps =  {
+const mapDispatchToProps = {
     addItemToCart
 }
 
-export default connect(cardListStateToProps,mapDispatchToProps)(Product);
+export default connect(cardListStateToProps, mapDispatchToProps)(Product);
