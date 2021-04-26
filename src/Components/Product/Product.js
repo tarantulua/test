@@ -21,6 +21,8 @@ function Product({myCardList, addItemToCart}) {
 
     const [open, setOpen] = useState(false);
 
+    // const isDisabledButton = useRef();
+
     // const [checkBool,setCheckBool] = useState(false);
 
     const params = useParams().id;
@@ -73,8 +75,20 @@ function Product({myCardList, addItemToCart}) {
 
 
     function addToCart() {
-        if (selSize !== "" && selColor !== "") {
-            addItemToCart(product);
+        if (selSize !== "" && selColor !== "" && forPrice) {
+            addItemToCart( {
+                id : product.id,
+                name : product.Name,
+                specs : product.specs,
+                img : product.img,
+                type : product.type,
+                size : selSize,
+                color : selColor,
+                price : forPrice[3]
+            } );
+        }
+        else {
+            alert("Cann`t add. Item out of stock!");
         }
     }
 
@@ -183,6 +197,7 @@ function Product({myCardList, addItemToCart}) {
                                                     </button>
                                                 )
                                             }
+                                            return
                                         })}
                                     </>
                                 )
@@ -193,7 +208,7 @@ function Product({myCardList, addItemToCart}) {
                                         {product.variants.map((variant, index) => {
                                             if (!checkArray.includes(variant[2])) {
                                                 checkArray.push(variant[2]);
-                                                console.log(variant[1], Boolean(selSize !== "" && variant[1] !== selSize));
+                                                // console.log(variant[1], Boolean(selSize !== "" && variant[1] !== selSize));
                                                 return (
                                                     //  disabled={selSize !== "" && variant[1] !== selSize ? true : false}
                                                     <button key={index}
@@ -208,6 +223,7 @@ function Product({myCardList, addItemToCart}) {
                                                     </button>
                                                 )
                                             }
+                                            return
                                         })}
                                     </>
                                 )

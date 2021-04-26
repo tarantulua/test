@@ -1,0 +1,39 @@
+.myCart-item{
+    border: 1px gray solid;
+    border-radius: 10px;
+    width: max-content;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    text-align: -webkit-center;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas: "img name name button"
+                         "img color size none"
+                         "img count count price";
+    grid-auto-columns: 100px 4rem 4rem 5rem ;
+    grid-auto-rows: 50px max-content max-content 100px;
+}
+
+.my-cart-item-img{
+    grid-area: img;
+    max-height: 125px;
+    max-width: 125px;
+}
+
+.my-cart-item-name{
+    grid-area: name;
+}
+
+.my-cart-item-size{
+    grid-area: size;
+}
+
+.my-cart-item-color{
+    grid-area: color;
+}
+
+.my-cart-item-price{
+    grid-area: price;
+}
