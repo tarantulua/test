@@ -1,5 +1,5 @@
 .myCart {
-    height: 100%;
+    height: calc(100% - 57px);
     width: 100%;
     padding: 10px;
 }
@@ -17,4 +17,8 @@
     display: flex;
     position: absolute;
     right: 0;
+}
+
+.myCart-spacer{
+    height: 100px;
 }

@@ -8,11 +8,11 @@
     margin: auto;
     text-align: -webkit-center;
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 5px;
     grid-template-areas: "img name name button"
                          "img color size none"
                          "img count count price";
-    grid-auto-columns: 100px 4rem 4rem 5rem ;
+    grid-auto-columns: 100px max-content max-content 5rem ;
     grid-auto-rows: 50px max-content max-content 100px;
 }
 
@@ -37,3 +37,32 @@
 .my-cart-item-price{
     grid-area: price;
 }
+
+.my-cart-item-count{
+    grid-area: count;
+    display: inline;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+}
+
+.my-cart-item-count > *{
+    margin: auto 5px;
+    height: 30px;
+    width: 30px;
+    border: none;
+    font-size: 40px;
+    line-height: 1;
+    text-align: -webkit-center;
+    border-radius: 50%;
+}
+
+.my-cart-item-count button{
+  color: gray;
+}
+
+.my-cart-item-count label{
+   font-size: 30px;
+    width: max-content;
+  }

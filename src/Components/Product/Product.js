@@ -73,7 +73,6 @@ function Product({myCardList, addItemToCart}) {
         }
     }, [])
 
-
     function addToCart() {
         if (selSize !== "" && selColor !== "" && forPrice) {
             addItemToCart( {
@@ -84,7 +83,8 @@ function Product({myCardList, addItemToCart}) {
                 type : product.type,
                 size : selSize,
                 color : selColor,
-                price : forPrice[3]
+                price : forPrice[3],
+                count : 1
             } );
         }
         else {
@@ -197,7 +197,7 @@ function Product({myCardList, addItemToCart}) {
                                                     </button>
                                                 )
                                             }
-                                            return
+                                            return <></>
                                         })}
                                     </>
                                 )
@@ -223,7 +223,7 @@ function Product({myCardList, addItemToCart}) {
                                                     </button>
                                                 )
                                             }
-                                            return
+                                            return <></>
                                         })}
                                     </>
                                 )

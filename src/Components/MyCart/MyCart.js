@@ -1,24 +1,22 @@
 import React, {useEffect, useState} from "react";
 import "./MyCart.css"
 import {connect} from "react-redux";
-import {deleteItemFromCart} from "../../redux/actions"
+// import {deleteItemFromCart} from "../../redux/actions"
 import MyCartItem from "../MyCartItem/MyCartItem";
 
-function MyCart({cart, deleteItemFromCart}) {
+function MyCart({cart}) {
 
     const [totalPrice,setTotalPrice] = useState(0);
 
-    // console.log(cart);
+    const [changed, setChanged] = useState();
 
     useEffect(()=>{
         let tempTotalPrice = 0;
         cart.forEach(product =>{
-            tempTotalPrice += product.price
+            tempTotalPrice += product.price * product.count
         })
         setTotalPrice(tempTotalPrice);
-    },[cart])
-
-    console.log(totalPrice);
+    },[cart,changed])
 
     return (
         <div className="myCart">
@@ -29,15 +27,15 @@ function MyCart({cart, deleteItemFromCart}) {
                         <>
                             <div className="myCart-list">
                                 {cart.map((product, index) => {
-                                    console.log(product);
                                     return (
-                                        <MyCartItem key={index} item={product}/>
+                                        <MyCartItem key={index} item={product} changed = {changed} setChanged = {setChanged}/>
                                     )
                                 })}
                             </div>
                             <div className="myCart-stats">
-                                <>{totalPrice}$</>
+                                <>{totalPrice.toFixed(2)}$</>
                             </div>
+                            <div className="myCart-spacer"/>
                         </>
                     )
                     :
@@ -55,8 +53,8 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = {
-    deleteItemFromCart
-}
+// const mapDispatchToProps = {
+//     deleteItemFromCart
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyCart);
+export default connect(mapStateToProps, null)(MyCart);
