@@ -10,8 +10,8 @@ function App({setCardList}) {
 
     useEffect( ()=>{
         const LoadList =  async () => {
-            const response = await fetch(`${process.env.PUBLIC_URL}/Products.json`);
-            const json = await response.json();
+            const response = await fetch(`${process.env.PUBLIC_URL}/Products.json`)
+            let json = await response.json()
             setCardList(json);
         }
         LoadList();

@@ -1,7 +1,17 @@
 .myCart {
     height: calc(100% - 57px);
     width: 100%;
-    padding: 10px;
+    padding: 0.5rem;
+}
+
+.myCart-title{
+    margin: .5rem 0;
+    font-size: 34px;
+}
+
+.myCart-empty{
+    display: flex;
+    justify-content: center;
 }
 
 .myCart-list{
@@ -13,12 +23,21 @@
 }
 
 .myCart-stats{
-    border: 1px gray solid;
     display: flex;
-    position: absolute;
-    right: 0;
 }
 
 .myCart-spacer{
     height: 100px;
+}
+
+.myCart-total-price-title{
+    position: absolute;
+    left: 0.5rem;
+    color: dimgray;
+}
+
+.myCart-total-price{
+    position: absolute;
+    right: 0.5rem;
+    color: black;
 }

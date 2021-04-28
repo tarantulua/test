@@ -5,7 +5,6 @@ import {connect} from "react-redux";
 import MyCartItem from "../MyCartItem/MyCartItem";
 
 function MyCart({cart}) {
-
     const [totalPrice,setTotalPrice] = useState(0);
 
     const [changed, setChanged] = useState();
@@ -18,31 +17,35 @@ function MyCart({cart}) {
         setTotalPrice(tempTotalPrice);
     },[cart,changed])
 
+    console.log(cart)
+
     return (
         <div className="myCart">
-            {
-                cart.length > 0
-                    ?
-                    (
-                        <>
-                            <div className="myCart-list">
-                                {cart.map((product, index) => {
-                                    return (
-                                        <MyCartItem key={index} item={product} changed = {changed} setChanged = {setChanged}/>
-                                    )
-                                })}
-                            </div>
-                            <div className="myCart-stats">
-                                <>{totalPrice.toFixed(2)}$</>
-                            </div>
-                            <div className="myCart-spacer"/>
-                        </>
-                    )
-                    :
-                    (
-                        <label>No item in cart.</label>
-                    )
-            }
+            <div className="myCart-title">My Cart</div>
+            {/*{*/}
+            {/*    cart.length > 0*/}
+            {/*        ?*/}
+            {/*        (*/}
+            {/*            <>*/}
+            {/*                <div className="myCart-list">*/}
+            {/*                    {cart.map((product, index) => {*/}
+            {/*                        return (*/}
+            {/*                            <MyCartItem key={index} item={product} changed = {changed} setChanged = {setChanged}/>*/}
+            {/*                        )*/}
+            {/*                    })}*/}
+            {/*                </div>*/}
+            {/*                <div className="myCart-stats">*/}
+            {/*                    <label className="myCart-total-price-title">Total amount:</label>*/}
+            {/*                    <label className="myCart-total-price">{totalPrice.toFixed(2)}$</label>*/}
+            {/*                </div>*/}
+            {/*                <div className="myCart-spacer"/>*/}
+            {/*            </>*/}
+            {/*        )*/}
+            {/*        :*/}
+            {/*        (*/}
+            {/*            <label className="myCart-empty">No item in cart.</label>*/}
+            {/*        )*/}
+            {/*}*/}
         </div>
     );
 }

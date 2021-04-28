@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
+import {NavLink} from "react-router-dom";
 import "./Product.css";
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
@@ -6,8 +7,9 @@ import {Collapse, Spinner} from "react-bootstrap";
 import SlideModal from "../SlideModal/SlideModal";
 import RatingBar from "../RatingBar/RatingBar";
 import {addItemToCart} from "../../redux/actions";
+import cartIcon from "./cart_icon.png";
 
-function Product({myCardList, addItemToCart}) {
+function Product({myCardList, addItemToCart, cartCount}) {
 
     const [product, setProduct] = useState();
 
@@ -15,38 +17,23 @@ function Product({myCardList, addItemToCart}) {
 
     const [chooseType, setChooseType] = useState("");
 
-    const [selSize, setSelSize] = useState("");
-
-    const [selColor, setSelColor] = useState("");
-
     const [open, setOpen] = useState(false);
-
-    // const isDisabledButton = useRef();
-
-    // const [checkBool,setCheckBool] = useState(false);
 
     const params = useParams().id;
 
+    const [options, setOptions] = useState();
 
-//<-- MUST BE CHANGE
+    const [selectedProduct, setSelectedProduct] = useState({});
+
+    const isAllSelected = useRef(false);
+
     let checkArray = [];
 
-    let forPrice;
+    const maxPrice = useRef(0);
 
-    if (selSize !== "" && selColor !== "") {
-        forPrice = product.variants.find(variant => variant[1] === selSize && variant[2] === selColor);
-    }
+    const minPrice = useRef(9999999999)
 
-    let max = 0, min = 9999999999999999999;
-
-    product?.variants.forEach((variant) => {
-        if (max < variant[3]) max = variant[3];
-        if (min > variant[3]) min = variant[3];
-    });
-//<-- END OF MUST BE CHANGE
-
-
-    // console.log(min, max)
+    const userProduct = useRef()
 
     function showSlideModal(type) {
         setChooseType(type);
@@ -73,87 +60,150 @@ function Product({myCardList, addItemToCart}) {
         }
     }, [])
 
-    function addToCart() {
-        if (selSize !== "" && selColor !== "" && forPrice) {
-            addItemToCart( {
-                id : product.id,
-                name : product.Name,
-                specs : product.specs,
-                img : product.img,
-                type : product.type,
-                size : selSize,
-                color : selColor,
-                price : forPrice[3],
-                count : 1
-            } );
+    useEffect(() => {
+        let optionsTemp = [];
+
+        if (product) {
+            Object.entries(product.options[0]).forEach((option, index) => {
+                optionsTemp.push(option[1])
+            })
+
+            product?.variants.forEach((variant) => {
+                if (maxPrice.current < variant.Price) maxPrice.current = variant.Price
+                if (minPrice.current > variant.Price) minPrice.current = variant.Price
+            });
         }
-        else {
-            alert("Cann`t add. Item out of stock!");
+
+        setOptions(optionsTemp)
+    }, [product])
+
+
+    function validateIsAllSelected() {
+        if (options) {
+            try {
+                options.forEach(option => {
+                    if (option !== "Price") {
+                        if (selectedProduct[option] && selectedProduct[option] !== "") {
+                            isAllSelected.current = true
+                        } else {
+                            isAllSelected.current = false;
+                            throw new Error();
+                        }
+                    }
+                });
+            } catch {
+            }
+        }
+
+        if (isAllSelected.current) {
+            // price.current = product.variants.find(variant => variant.contain(selectedProduct));
+            let forFind = JSON.stringify(selectedProduct).replaceAll("{", "").replaceAll("}", "")
+            userProduct.current = (product.variants.find(variant => JSON.stringify(variant).includes(forFind)))
+        }
+
+    }
+
+    function selectOption(optionValue) {
+        let pair = {[chooseType]: optionValue}
+        setSelectedProduct({...selectedProduct, ...pair})
+    }
+
+    function addToCart() {
+        if (isAllSelected.current && userProduct.current) {
+
+            let optionsObj = options.reduce(function (acc, cur, i) {
+                acc[i] = cur;
+                return acc;
+            }, {});
+
+            addItemToCart({
+                id: product.id,
+                name: product.Name,
+                specs: product.specs,
+                img: product.img,
+                type: product.type,
+                options: optionsObj,
+                variant: userProduct.current,
+                count: 1
+            })
+            let cartElement = document.getElementById("product-cart")
+            cartElement.classList.add("show")
+            setTimeout(() => {
+                cartElement.classList.remove("show")
+            }, 4000);
+        } else {
+            alert("Cann`t add. Item out of stock!")
         }
     }
 
+//<-- MUST BE CHANGE
+    validateIsAllSelected()
+//<-- END OF MUST BE CHANGE
 
     return (
         <>
             {product ? (
                     <div className="product">
-                        {/*<button>dsadsdas</button>*/}
                         <div id="product-content" className="product-content">
                         <span className='product-img'>
                             <img src={product.img} alt="product-img"/>
                         </span>
                             <div className="product-top">
-                                <div className="product-selectors">
-                                <span className="product-size">
-                                   Size <button onClick={() => {
-                                    showSlideModal("size")
-                                }}>
-                                    {selSize ? selSize : "Choose"}
-                                    </button>
-                                </span>
-                                    <span className="product-color">
-                                    Color  <button onClick={() => {
-                                        showSlideModal("color")
-                                    }}>
-                                        {selColor ? selColor : "Choose"}
-                                        </button>
-                                </span>
+                                <div className="product-selectors-container">
+                                    {
+                                        options.map((option, index) => {
+                                            if (option !== "Price")
+                                                return (
+                                                    <button key={index}
+                                                            className={`product-selector ${
+                                                                selectedProduct[option] && selectedProduct[option] !== ""
+                                                                    ? ""
+                                                                    : "notSelected"
+                                                            }`}
+                                                            onClick={event => {
+                                                                showSlideModal(option)
+                                                            }}>
+                                                        {selectedProduct[option] && selectedProduct[option] !== ""
+                                                            ? selectedProduct[option]
+                                                            : option
+                                                        }
+                                                    </button>
+                                                )
+                                            return null
+                                        })
+                                    }
                                 </div>
                                 <div className="product-title">
                                     {product.Name}
                                 </div>
                                 <div className="product-price">
-                                    {selSize === "" || selColor === "" ? (
-                                            <>{min} - {max}</>
-                                        )
-                                        :
-                                        (
-                                            <>
-                                                {
-                                                    forPrice ?
-                                                    (
-                                                        <>
-                                                            {
-                                                                forPrice[3]
-                                                            }
-                                                        </>
-                                                    )
-                                                    : (
-                                                        <>
-                                                            Out of stock
-                                                        </>
-                                                    )
-                                                }
-                                            </>
-                                        )
-
+                                    {
+                                        !isAllSelected.current
+                                            ? (
+                                                <>{minPrice.current}$ - {maxPrice.current}$</>
+                                            )
+                                            : (
+                                                <>
+                                                    {
+                                                        userProduct.current ? (
+                                                            <>
+                                                                {userProduct.current.Price}$
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                Out of stock
+                                                            </>
+                                                        )
+                                                    }
+                                                </>
+                                            )
                                     }
                                 </div>
                                 <div className="product-category">
                                     Categories
                                 </div>
                                 <div className="product-rating">
-                                    <RatingBar isSelectable={true}/>
+                                    <RatingBar isSelectable={false} rating={2}/>
                                 </div>
                             </div>
                             <button className={`myExpand-button ${open ? "" : "m-bot60px"}`} onClick={() => setOpen(!open)}
@@ -166,70 +216,47 @@ function Product({myCardList, addItemToCart}) {
                                     {product.specs}
                                 </div>
                             </Collapse>
-                            <div className="prouct-margin"/>
+                            <div className="product-margin"/>
                             <button className="product-toCart" onClick={addToCart}>ADD TO CART
                             </button>
                         </div>
                         <SlideModal isActive={isSlideModalShow}
-                                    setActive={setIsSlideModalShow}>
+                                    setActive={setIsSlideModalShow}
+                        >
                             <div className="picker-title">
-                                Select size
+                                Select {chooseType}
                             </div>
                             <div className="picker-buttons">
-                                {chooseType === "size" &&
-                                (
-                                    <>
-                                        {product.variants.map((variant, index) => {
-                                            if (!checkArray.includes(variant[1])) {
-                                                checkArray.push(variant[1]);
-                                                // if (checkBool != true) setCheckBool(Boolean(selColor !== "" && variant[2] !== selColor));
-                                                return (
-                                                    // disabled={checkBool}
-                                                    <button key={index}
-                                                            className={selSize === variant[1] ? "picker-active" : null}
-                                                            onClick={
-                                                                () => {
-                                                                    if (selSize !== variant[1])
-                                                                        setSelSize(variant[1])
-                                                                    else setSelSize("");
-                                                                }
-                                                            }>{variant[1]}
-                                                    </button>
-                                                )
-                                            }
-                                            return <></>
-                                        })}
-                                    </>
-                                )
-                                }
-                                {chooseType === "color" &&
-                                (
-                                    <>
-                                        {product.variants.map((variant, index) => {
-                                            if (!checkArray.includes(variant[2])) {
-                                                checkArray.push(variant[2]);
-                                                // console.log(variant[1], Boolean(selSize !== "" && variant[1] !== selSize));
-                                                return (
-                                                    //  disabled={selSize !== "" && variant[1] !== selSize ? true : false}
-                                                    <button key={index}
-                                                            className={selColor === variant[2] ? "picker-active" : null}
-                                                            onClick={
-                                                                () => {
-                                                                    if (selColor !== variant[2])
-                                                                        setSelColor(variant[2])
-                                                                    else setSelColor("")
-                                                                }
-                                                            }>{variant[2]}
-                                                    </button>
-                                                )
-                                            }
-                                            return <></>
-                                        })}
-                                    </>
-                                )
+                                {
+                                    product.variants.map((variant, index) => {
+                                        if (!checkArray.includes(variant[chooseType])) {
+                                            checkArray.push(variant[chooseType]);
+                                            return (
+                                                <button key={index}
+                                                        className={selectedProduct[chooseType] === variant[chooseType]
+                                                            ? "picker-active"
+                                                            : ""}
+                                                        onClick={
+                                                            event => {
+                                                                if (selectedProduct[chooseType] !== variant[chooseType])
+                                                                    selectOption(event.target.textContent)
+                                                                else selectOption("")
+                                                            }
+                                                        }>{variant[chooseType]}
+                                                </button>
+                                            )
+                                        }
+                                        return null
+                                    })
                                 }
                             </div>
                         </SlideModal>
+                        <div id="product-cart" className="product-cart">
+                            <NavLink to="/cart" style={{textDecoration: 'none'}}>
+                                <label className="cart-count">{cartCount}</label>
+                                <img src={cartIcon} alt="cart"/>
+                            </NavLink>
+                        </div>
                     </div>
                 )
                 : (
@@ -243,8 +270,15 @@ function Product({myCardList, addItemToCart}) {
 }
 
 const cardListStateToProps = state => {
+    let cartCount = 0;
+    if (state.cart.cart.length !== 0) {
+        state.cart.cart.forEach(product => {
+            cartCount += product.count;
+        })
+    }
     return {
-        myCardList: state.cardList.cardList
+        myCardList: state.cardList.cardList,
+        cartCount: cartCount
     }
 }
 

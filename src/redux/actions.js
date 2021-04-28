@@ -15,10 +15,18 @@ export function addItemToCart(item){
     }
 }
 
-export function deleteItemFromCart(item){
+export function getItem(id){
+
+    return {
+        type: "getItem",
+        payload: id
+    }
+}
+
+export function deleteItemFromCart(id){
     // console.log(cardList);
     return {
         type: "deleteFromCart",
-        payload: item
+        payload: id
     }
 }

@@ -15,27 +15,27 @@
     "variants": [
       {
         "id": "v1",
-        "1": "L",
-        "2": "Red",
-        "3": 199.99
+        "Size": "L",
+        "Color": "Red",
+        "Price": 199.99
       },
       {
         "id": "v2",
-        "1": "X",
-        "2": "Black",
-        "3": 190.99
+        "Size": "X",
+        "Color": "Black",
+        "Price": 190.99
       },
       {
         "id": "v3",
-        "1": "X",
-        "2": "Yellow",
-        "3": 219.99
+        "Size": "X",
+        "Color": "Yellow",
+        "Price": 219.99
       },
       {
         "id": "v4",
-        "1": "L",
-        "2": "Yellow",
-        "3": 210
+        "Size": "L",
+        "Color": "Yellow",
+        "Price": 210
       }
     ]
   },
@@ -55,21 +55,21 @@
     "variants": [
       {
         "id": "v1",
-        "1": "L",
-        "2": "Red",
-        "3": 199.99
+        "Size": "L",
+        "Color": "Red",
+        "Price": 199.99
       },
       {
         "id": "v2",
-        "1": "X",
-        "2": "Yellow",
-        "3": 196.99
+        "Size": "X",
+        "Color": "Yellow",
+        "Price": 196.99
       },
       {
         "id": "v3",
-        "1": "X",
-        "2": "Gray",
-        "3": 189.99
+        "Size": "X",
+        "Color": "Gray",
+        "Price": 189.99
       }
     ]
   },
@@ -82,28 +82,24 @@
     "options": [
       {
         "1": "Size",
-        "2": "Color",
-        "3": "Price"
+        "2": "Price"
       }
     ],
     "variants": [
       {
         "id": "v1",
-        "1": "L",
-        "2": "Red",
-        "3": 299.99
+        "Size": "L",
+        "Price": 289
       },
       {
         "id": "v2",
-        "1": "X",
-        "2": "Black",
-        "3": 298.99
+        "Size": "X",
+        "Price": 299.99
       },
       {
         "id": "v3",
-        "1": "X",
-        "2": "Yellow",
-        "3": 299.98
+        "Size": "X",
+        "Price": 279
       }
     ]
   }
